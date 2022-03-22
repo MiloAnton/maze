@@ -22,12 +22,13 @@ void readTxt(char caca[])
     char buff[1000][1000];
     printf("%s", caca);
     fp = fopen(caca, "r");
+    int x, i, j;
     if (fp == NULL)
         exit(EXIT_FAILURE);
     while ((read = getline(&line, &len, fp)) != -1)
     {
         sizeX = strlen(line);
-        for (int x = 0; x < sizeX; x++)
+        for (x = 0; x < sizeX; x++)
         {
             buff[sizeY][x] = line[x];
         }
@@ -35,14 +36,14 @@ void readTxt(char caca[])
     }
 
     maze = (char **)malloc(sizeX * sizeY * sizeof(char *));
-    for (int i = 0; i < sizeY; i++)
+    for (i = 0; i < sizeY; i++)
     {
         maze[i] = (char *)malloc(sizeX * sizeof(char));
     }
 
-    for (int i = 0; i < sizeY; i++)
+    for (i = 0; i < sizeY; i++)
     {
-        for (int j = 0; j < sizeX; j++)
+        for (j = 0; j < sizeX; j++)
         {
             if (buff[i][j] == '1')
             {
@@ -88,12 +89,13 @@ bool explore(int posX, int posY){
 
 int main(int argc, char *argv[])
 {
+    int i, j;
     clock_t begin = clock();
     readTxt(argv[1]);
     explore(startX, startY);
     clock_t end = clock();
-    for(int i = 0; i < sizeY; i++) {
-        for(int j = 0; j < sizeX; j++) {
+    for(i = 0; i < sizeY; i++) {
+        for(j = 0; j < sizeX; j++) {
             printf("%c", maze[i][j]);
         }
         printf("\n");
