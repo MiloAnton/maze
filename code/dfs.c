@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <time.h>
+#include <string.h>
 
 FILE *fp;
 char *line = NULL;
@@ -17,11 +18,11 @@ int startY;
 
 char **maze;
 
-void readTxt(char caca[])
+void readTxt(char filename[])
 {
     char buff[1000][1000];
-    printf("%s", caca);
-    fp = fopen(caca, "r");
+    printf("%s", filename);
+    fp = fopen(filename, "r");
     int x, i, j;
     if (fp == NULL)
         exit(EXIT_FAILURE);
@@ -94,9 +95,14 @@ int main(int argc, char *argv[])
     readTxt(argv[1]);
     explore(startX, startY);
     clock_t end = clock();
+    printf("\n");
     for(i = 0; i < sizeY; i++) {
         for(j = 0; j < sizeX; j++) {
-            printf("%c", maze[i][j]);
+            if(maze[i][j] == 'o'){
+                printf(" ", maze[i][j]);
+            }else{
+                printf("%c", maze[i][j]);
+            }
         }
         printf("\n");
     }

@@ -1,4 +1,9 @@
 FROM alpine:3.6
+WORKDIR /app
+COPY . .
 RUN apk update
-RUN apk add gcc g++ make git gnutls-dev gnutls-c++ clang
-RUN echo "To run the program type : \"cd code && ./maze \" then choose the maze you want to solve : r1.txt, r2.txt, r3.txt, r4.txt, r5.txt, o1.txt "
+RUN apk add gcc
+RUN apk add musl-dev
+RUN gcc -o maze ./code/dfs.c
+RUN echo "Executing last maze with DFS algorithm"
+RUN ./maze ./code/r5.txt
