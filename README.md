@@ -41,3 +41,4 @@ Then run the program with :
 ```
 
 ### [Try an online JS / HTML version](http://152.228.139.203/Game/mazeSolver/index.html)
+ [Repo here](https://github.com/SimonBredeche/MazeSolverHTML)
